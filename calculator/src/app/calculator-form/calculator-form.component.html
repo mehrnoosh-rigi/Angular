@@ -4,28 +4,45 @@
           <td colspan="3">
             <input type="text" #result>
           </td>
-          <td><button (click)="clear(result)" >clear</button> </td>
+          <td><button (click)="clear(result)">clear</button> </td>
       </tr>
       <tr>
-          <td *ngFor="let item of firstRow" id="{{item}}">
-            <button (onclick)="dis('1')"  onkeydown="myFunction(event)"> {{item}} </button>
+          <td *ngFor="let item of firstRow" id="{{item}}" #{{item}}>
+            <button (click)="dis(item, result)"> {{item}} </button>
+          </td>
+          <td>
+            <button (click)="operation(result, '+')"> + </button>
           </td>
       </tr>
       <tr>
           <td *ngFor="let item of secondRow">
-            <button (onclick)="dis('4')" onkeydown="myFunction(event)">{{item}} </button>
+            <button (onclick)="dis(item, result)">{{item}} </button>
+          </td>
+          <td>
+            <button (click)="operation(result, '-')"> - </button>
           </td>
       </tr>
       <tr>
           <td *ngFor="let item of thirdRow">
-            <button (onclick)="dis('7')" 
-                      onkeydown="myFunction(event)"> {{item}} </button>
+            <button (onclick)="dis(item, result)"> {{item}} </button>
+          </td>
+          <td>
+            <button (click)="operation(result, '/')"> / </button>
           </td>
       </tr>
       <tr>
-          <td *ngFor="let item of fourthRow">
-            <button (onclick)="dis('0')" 
-                      onkeydown="myFunction(event)">{{item}}</button>
+          <td>
+            <button (onclick)="dis(0, result)">0</button>
+          </td>
+          
+          <td>
+            <button (click)="operation(result, '*')"> * </button>
+          </td>
+          <td>
+            <button (click)="operation(result, '.')"> . </button>
+          </td>
+          <td>
+            <button (click)="operation(result, '=')"> = </button>
           </td>
       </tr>
   </table>
