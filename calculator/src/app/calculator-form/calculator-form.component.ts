@@ -6,6 +6,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./calculator-form.component.scss']
 })
 export class CalculatorFormComponent implements OnInit {
+result: any;
 
   constructor() { }
 
@@ -17,8 +18,8 @@ export class CalculatorFormComponent implements OnInit {
 
   ngOnInit() {
   }
-  clear(){
-    // this.inputName.
+  clear(result){
+      result.value = "";
   }
   dis(value){
     console.log("pressed: "+ value)

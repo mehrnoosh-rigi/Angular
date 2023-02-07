@@ -2,9 +2,9 @@
   <table id="calcu" class="table">
       <tr>
           <td colspan="3">
-            <input type="text" id="result">
+            <input type="text" #result>
           </td>
-          <td><button (click)="clear()" >clear</button> </td>
+          <td><button (click)="clear(result)" >clear</button> </td>
       </tr>
       <tr>
           <td *ngFor="let item of firstRow" id="{{item}}">
