@@ -11,23 +11,23 @@
             <button (click)="dis(item, result)"> {{item}} </button>
           </td>
           <td>
-            <button (click)="operation(result, '+')"> + </button>
+            <button (click)="dis('+', result)"> + </button>
           </td>
       </tr>
       <tr>
-          <td *ngFor="let item of secondRow">
-            <button (onclick)="dis(item, result)">{{item}} </button>
+          <td *ngFor="let item of secondRow" id="{{item}}" #{{item}}>
+            <button (click)="dis(item, result)"> {{item}} </button>
           </td>
           <td>
-            <button (click)="operation(result, '-')"> - </button>
+            <button (click)="dis('-', result)"> - </button>
           </td>
       </tr>
       <tr>
-          <td *ngFor="let item of thirdRow">
-            <button (onclick)="dis(item, result)"> {{item}} </button>
+          <td *ngFor="let item of thirdRow" id="{{item}}" #{{item}}>
+            <button (click)="dis(item, result)"> {{item}} </button>
           </td>
           <td>
-            <button (click)="operation(result, '/')"> / </button>
+            <button (click)="dis('/', result)"> / </button>
           </td>
       </tr>
       <tr>
@@ -36,13 +36,13 @@
           </td>
           
           <td>
-            <button (click)="operation(result, '*')"> * </button>
+            <button (click)="dis('*', result)"> * </button>
           </td>
           <td>
-            <button (click)="operation(result, '.')"> . </button>
+            <button (click)="dis('.', result)"> . </button>
           </td>
           <td>
-            <button (click)="operation(result, '=')"> = </button>
+            <button (click)="dis('=', result)"> = </button>
           </td>
       </tr>
   </table>

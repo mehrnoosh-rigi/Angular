@@ -25,81 +25,78 @@ result: any;
       this.displayNumber= "";
       this.numbers = [];
   }
+
+  isOperation(value){
+    var op = ["+", "-", "/", "*", "="] 
+    return op.filter(p => p == value).length > 0;
+  }
+  doCalculation(result){
+    var firstOperand = this.numbers[0];
+    var secondOperand = this.numbers[2];
+    var operation = this.numbers[1];
+    var r;
+
+    switch (operation)
+        {
+          case "/":
+            if(secondOperand == 0){
+              this.error = "Division by zero"
+            }else{
+              r = firstOperand / secondOperand;
+              this.updateResult(result, r);
+            }
+            break;
+          case "+":{
+            r = firstOperand + secondOperand;
+            this.updateResult(result, r);
+            break;
+          }
+          case "-":{
+            r = firstOperand - secondOperand;
+            this.updateResult(result, r);
+            break;
+          }
+          case "*":{
+            r = firstOperand * secondOperand;
+            this.updateResult(result, r);
+            break;
+          }
+        }
+  }
+
   dis(value, result){
-    if(this.displayNumber){
+    debugger
+    var isOperation = this.isOperation(value);
+
+    if(this.displayNumber && !isOperation){
       this.displayNumber = this.displayNumber + value;
-    }else{
+    }
+    else{
       this.displayNumber = value;
     }
-    this.numbers.push(Number(this.displayNumber));
+
+    if(!isOperation){
+      this.numbers.push(Number(this.displayNumber)); 
+
+    } else {
+      this.numbers.push(this.displayNumber);
+    }
+    if(this.numbers.length == 3 || value=="="){
+      this.doCalculation(result);
+    }
+    
+    
     
     
     result.value = this.displayNumber;
-    this.displayNumber = Number(this.displayNumber);
   }
   updateResult(result, r){
-    debugger
-
     this.numbers = [];
     this.numbers.push(r);
     result.value = r;
-
+    this.displayNumber = r
   }
-  operation(result, operation){
-    var r;
-    this.numbers.push(operation);
 
-
-
-    // result.value = "";
-    this.displayNumber = undefined
-    if(this.numbers.length > 2){
-      var firstOperand = this.numbers[0]
-      var secondOperand = this.numbers[2]
-      if(operation == "="){
-        operation = this.numbers[1]
-        // this.numbers = [];
-        // this.numbers.push(r);
-        // result.value = r;
-
-      }
-      switch (operation)
-      {
-        case "/":
-          if(secondOperand == 0){
-            this.error = "Division by zero"
-          }else{
-            r = firstOperand / secondOperand;
-            this.updateResult(result, r);
-          }
-          break;
-        case "+":{
-          r = firstOperand + secondOperand;
-          this.updateResult(result, r);
-          break;
-        }
-        case "-":{
-          r = firstOperand - secondOperand;
-          this.updateResult(result, r);
-          break;
-        }
-        case "*":{
-          r = firstOperand * secondOperand;
-          this.updateResult(result, r);
-          break;
-        }
-      }        
-
-    }
-    // if(this.displayNumber == 0){
-    //   r = this.numbers[0] / this.numbers[1]
-    //   this.result = r
-    // } else {
-    //   this.error = "Can not divide by zero"
-    // }
-  }
-  solve(){
-    console.log("solve")
-  }
+  
 
 }
